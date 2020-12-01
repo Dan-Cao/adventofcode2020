@@ -7,22 +7,16 @@
 (defn get-combinations [items num] (map (fn [x] (into [], x)) (combinations items num)))
 (defn totals-2020 [x] (= (apply + (into [] x)) 2020))
 
-; Part 1
-(map (fn [x] (apply * x))
-     (filter totals-2020
-             (get-combinations
-               (read-ints-from-file "day_01_input_short.txt")
-               2)))
+(defn product-of-entries-that-sum-to-2020
+  [entries num-of-entries]
+  (map (fn [x] (apply * x))
+       (filter totals-2020
+               (get-combinations entries num-of-entries)))
+  )
 
-(map (fn [x] (apply * x))
-     (filter totals-2020
-             (get-combinations
-               (read-ints-from-file "day_01_input.txt")
-               2)))
+; Part 1
+(product-of-entries-that-sum-to-2020 (read-ints-from-file "day_01_input_short.txt") 2)
+(product-of-entries-that-sum-to-2020 (read-ints-from-file "day_01_input.txt") 2)
 
 ; Part 2
-(map (fn [x] (apply * x))
-     (filter totals-2020
-             (get-combinations
-               (read-ints-from-file "day_01_input.txt")
-               3)))
+(product-of-entries-that-sum-to-2020 (read-ints-from-file "day_01_input.txt") 3)
